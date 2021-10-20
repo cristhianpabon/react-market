@@ -3,7 +3,7 @@
 import { jsx } from "@emotion/react";
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
-import CartWidget from "../CartWidget/CartWidget";
+import CartWidget from "../CartWidget";
 import { menuItems } from "./Navbar.constants";
 import {
   navbarStyles,
