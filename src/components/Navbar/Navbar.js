@@ -3,12 +3,15 @@
 import { jsx } from "@emotion/react";
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
+import CartWidget from "../CartWidget/CartWidget";
 import { menuItems } from "./Navbar.constants";
 import {
   navbarStyles,
   navbarLogoStyles,
+  navbarMenuButtonsStyles,
   navbarMenuStyles,
   navbarButtonStyles,
+  navbarMenuCart,
   navbarMenuIcon,
   sidebarStyles,
   sidebarMenuStyles,
@@ -27,19 +30,26 @@ const Navbar = (props) => {
     <div>
       <div css={navbarStyles}>
         <div>
-          <a href="#/" css={navbarLogoStyles}>Aski Uru</a>
+          <a href="#/" css={navbarLogoStyles}>
+            Aski Uru
+          </a>
         </div>
-        <ul css={navbarMenuStyles}>
-          {menuItems.map((item, index) => {
-            return (
-              <li key={index} css={navbarButtonStyles}>
-                {item}
-              </li>
-            );
-          })}
-        </ul>
-        <div css={navbarMenuIcon} onClick={toggleSideBar}>
-          <FaBars />
+        <div css={navbarMenuButtonsStyles}>
+          <div css={navbarMenuCart}>
+            <CartWidget />
+          </div>
+          <div css={navbarMenuIcon} onClick={toggleSideBar}>
+            <FaBars />
+          </div>
+          <ul css={navbarMenuStyles}>
+            {menuItems.map((item, index) => {
+              return (
+                <li key={index} css={navbarButtonStyles}>
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
       <div css={sidebarStyles({ navbarIsOpen })}>

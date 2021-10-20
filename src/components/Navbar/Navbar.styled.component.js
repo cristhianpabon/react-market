@@ -19,6 +19,12 @@ export const navbarLogoStyles = css`
   }
 `;
 
+export const navbarMenuButtonsStyles = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 export const navbarMenuStyles = css`
   display: flex;
   justify-content: space-between;
@@ -33,6 +39,10 @@ export const navbarButtonStyles = css`
   list-style: none;
   text-transform: uppercase;
   cursor: pointer;
+`;
+
+export const navbarMenuCart = css`
+  margin-right: 10px;
 `;
 
 export const navbarMenuIcon = css`
