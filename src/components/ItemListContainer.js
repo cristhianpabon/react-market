@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { data } from '../data/data';
+import ItemList from './ItemList';
 
-const ItemListContainer = (props) => {
+const ItemListContainer = () => {
+
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(()=>{
+        const listProducts = new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                resolve(data);
+            },3000);
+        })
+
+        listProducts.then((data) => {
+            setProducts(data);
+            setLoading(false);
+        })
+    },[]);
+
     return (
         <div>
-            <p>Hola Coders!</p>
+            {loading ? <p>Loading...</p> : <ItemList products={products} />}
         </div>
     );
 }
