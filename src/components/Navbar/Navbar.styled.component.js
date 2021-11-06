@@ -88,4 +88,10 @@ export const sidebarButtonStyles = css`
   font-size: 19px;
   font-family: "Bebas Neue", cursive;
   padding-bottom: 20px;
+  color: #000000;
+`;
+
+export const linkStyles = css`
+    color:#000000;
+    text-decoration:none;
 `;

@@ -17,7 +17,9 @@ import {
   sidebarMenuStyles,
   sidebarButtonLogoStyles,
   sidebarButtonStyles,
+  linkStyles,
 } from "./Navbar.styled.component";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
@@ -45,7 +47,7 @@ const Navbar = (props) => {
             {menuItems.map((item, index) => {
               return (
                 <li key={index} css={navbarButtonStyles}>
-                  {item}
+                <Link css={linkStyles} to={item.path}>{item.text}</Link>
                 </li>
               );
             })}
@@ -55,13 +57,13 @@ const Navbar = (props) => {
       <div css={sidebarStyles({ navbarIsOpen })}>
         <ul css={sidebarMenuStyles}>
           <li css={sidebarButtonLogoStyles}>ASKI URU</li>
-          {menuItems.map((item, index) => {
-            return (
+          {menuItems.map((item, index) => 
+            (
               <li key={index} css={sidebarButtonStyles}>
-                {item}
+                <Link to={item.path}>{item.text}</Link>
               </li>
-            );
-          })}
+            )
+          )}
         </ul>
       </div>
     </div>

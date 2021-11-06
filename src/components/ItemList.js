@@ -13,8 +13,9 @@ const ItemList = ({ products }) => {
   return (
     <div css={itemListStyles}>
       {products.map((product) => (
-        <Item
+        <Item 
           key={product.id}
+          productId={product.id}
           name={product.name}
           description={product.description}
           price={product.price}
