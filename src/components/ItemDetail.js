@@ -1,6 +1,10 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx, css } from "@emotion/react";
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import ItemCount from "./ItemCount";
+import { CartContext } from "../context/CartContext";
 
 const container = css`
   width: 100%;
@@ -45,7 +49,17 @@ const priceStyles = css`
 
 const descriptionStyles = css``;
 
-const ItemDetail = ({ name, image, price, description }) => {
+const ItemDetail = ({ id,name, image, price, description, stock }) => {
+
+  const [buy,setBuy] = useState(false);
+  const { addItem } = useContext(CartContext)
+
+  const add = (props)=> {
+    setBuy(true);
+    addItem({id,name,price},props.units);
+    alert(`agregaste ${props.units} al carrito!`);
+  }
+
   return (
     <div css={container}>
       <div css={itemContainer}>
@@ -55,6 +69,8 @@ const ItemDetail = ({ name, image, price, description }) => {
         <div css={rightContainer}>
           <h1 css={nameStyles}>{name}</h1>
           <p css={priceStyles}>{price}</p>
+          <p css={priceStyles}>{stock}</p>
+          {!buy ? <ItemCount stock={stock} onAdd={add}/> : <Link to="/product/cart">Terminar Compra</Link>}
         </div>
       </div>
       <div css={descriptionContainer}>

@@ -15,9 +15,9 @@ const ItemDetailContainer = () => {
     });
 
     getProduct.then((data) => {
-      setProduct(data.find((i) => (i.id = productId)));
+      setProduct(data.find((i) => (i.id === productId)));
+      setLoading(false);
     });
-    setLoading(false);
   }, [productId]);
 
   return (
@@ -26,10 +26,12 @@ const ItemDetailContainer = () => {
         <p>Loading...</p>
       ) : (
         <ItemDetail
+          id={product.id}
           name={product.name}
           description={product.description}
           price={product.price}
           image={product.image}
+          stock={product.stock}
         />
       )}
     </div>

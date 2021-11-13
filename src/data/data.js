@@ -5,7 +5,7 @@ export const data = [
         description: 'Aenean euismod feugiat rutrum. Etiam ullamcorper orci eget erat tristique eleifend.',
         price: '$2200',
         category: 'abstract',
-        stock: '2',
+        stock: '20',
         image: '/img/products/img1.jpeg'
     },
     {
@@ -14,7 +14,7 @@ export const data = [
         description: 'Vivamus at aliquet tellus, vel efficitur quam. Curabitur aliquam sagittis metus non pellentesque.',
         price: '$4600',
         category: 'abstract',
-        stock: '2',
+        stock: '5',
         image: '/img/products/img2.jpeg'
     },
     {
@@ -32,7 +32,7 @@ export const data = [
         description: 'Aenean euismod feugiat rutrum. Etiam ullamcorper orci eget erat tristique eleifend.',
         price: '$2500',
         category: 'abstract',
-        stock: '2',
+        stock: '3',
         image: '/img/products/img2.jpeg'
     },
     {
