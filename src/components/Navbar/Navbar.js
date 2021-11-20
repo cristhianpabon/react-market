@@ -1,7 +1,7 @@
 /** @jsxRuntime classic /
 /* @jsx jsx */
 import { jsx } from "@emotion/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import CartWidget from "../CartWidget";
 import { menuItems } from "./Navbar.constants";
@@ -20,9 +20,11 @@ import {
   linkStyles,
 } from "./Navbar.styled.component";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const Navbar = (props) => {
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
+  const { products } = useContext(CartContext);
 
   const toggleSideBar = () => {
     setNavbarIsOpen(!navbarIsOpen);
@@ -37,9 +39,11 @@ const Navbar = (props) => {
           </a>
         </div>
         <div css={navbarMenuButtonsStyles}>
-          <div css={navbarMenuCart}>
-            <CartWidget />
-          </div>
+          {products.length > 0 && (
+            <div css={navbarMenuCart}>
+              <CartWidget addedProducts={products && products.length} />
+            </div>
+          )}
           <div css={navbarMenuIcon} onClick={toggleSideBar}>
             <FaBars />
           </div>
@@ -47,7 +51,9 @@ const Navbar = (props) => {
             {menuItems.map((item, index) => {
               return (
                 <li key={index} css={navbarButtonStyles}>
-                <Link css={linkStyles} to={item.path}>{item.text}</Link>
+                  <Link css={linkStyles} to={item.path}>
+                    {item.text}
+                  </Link>
                 </li>
               );
             })}
@@ -57,13 +63,11 @@ const Navbar = (props) => {
       <div css={sidebarStyles({ navbarIsOpen })}>
         <ul css={sidebarMenuStyles}>
           <li css={sidebarButtonLogoStyles}>ASKI URU</li>
-          {menuItems.map((item, index) => 
-            (
-              <li key={index} css={sidebarButtonStyles}>
-                <Link to={item.path}>{item.text}</Link>
-              </li>
-            )
-          )}
+          {menuItems.map((item, index) => (
+            <li key={index} css={sidebarButtonStyles}>
+              <Link to={item.path}>{item.text}</Link>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
