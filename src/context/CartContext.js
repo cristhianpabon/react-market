@@ -11,16 +11,16 @@ const CartProvider = ({children}) => {
     }   
     
     const addItem = (item, quantity) => {
-        if(isInCart(item && item.id)){
+        if(item && isInCart(item.id)){
             console.log("Item is existing in products");
             return;
         }
         setProducts([...products,{item, quantity}]);
-        console.log(products);
     }
     
     const removeItem = (itemId) => {
-        return products.filter( product => product.id !== itemId);
+        const newProducts = products.filter( product => product.item.id !== itemId);
+        setProducts(newProducts);
     }     
     
     const clear = () => {

@@ -49,16 +49,25 @@ const priceStyles = css`
 
 const descriptionStyles = css``;
 
-const ItemDetail = ({ id,name, image, price, description, stock }) => {
+const ItemDetail = ({ id, name, image, price, description, stock }) => {
+  const [buy, setBuy] = useState(false);
+  const { addItem, products } = useContext(CartContext);
 
-  const [buy,setBuy] = useState(false);
-  const { addItem } = useContext(CartContext)
+  const add = (props) => {
+    const filteredProduct = products.filter(
+      (product) => product.name === name
+    );
 
-  const add = (props)=> {
-    setBuy(true);
-    addItem({id,name,price},props.units);
-    alert(`agregaste ${props.units} al carrito!`);
-  }
+    if (props.units !== 0 && filteredProduct.length === 0) {
+      setBuy(true);
+      addItem({ id, name, price }, props.units);
+      alert(`agregaste ${props.units} al carrito!`);
+    } else if (props.units === 0) {
+      alert(`primero selecciona la cantidad del producto!`);
+    } else if (filteredProduct.length > 1) {
+      alert(`El producto ya existe en el carrito!`);
+    }
+  };
 
   return (
     <div css={container}>
@@ -70,7 +79,11 @@ const ItemDetail = ({ id,name, image, price, description, stock }) => {
           <h1 css={nameStyles}>{name}</h1>
           <p css={priceStyles}>{price}</p>
           <p css={priceStyles}>{stock}</p>
-          {!buy ? <ItemCount stock={stock} onAdd={add}/> : <Link to="/product/cart">Terminar Compra</Link>}
+          {!buy ? (
+            <ItemCount stock={stock} onAdd={add} />
+          ) : (
+            <Link to="/product/cart">Terminar Compra</Link>
+          )}
         </div>
       </div>
       <div css={descriptionContainer}>

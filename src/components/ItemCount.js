@@ -6,7 +6,7 @@ function ItemCount(props) {
 
   const handleButton = {
     sumar: () => {
-      if (units === stock) {
+      if (units > props.stock) {
         alert("no podes seleccionar mas");
       } else {
         setUnits(units + 1);
