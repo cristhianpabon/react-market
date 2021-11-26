@@ -18,15 +18,14 @@ const ItemDetailContainer = () => {
         );
         const citySnapshot = await getDocs(productsCollection);
         const cityList = citySnapshot.docs.map((doc) => doc.data());
-        setProduct(cityList);
-        setLoading(false);
+          setProduct(cityList[0]);
+          setLoading(false);
       } catch (error) {
         console.log("Error:", error);
       }
     };
     getProducts();
   }, [productId]);
-
   return (
     <div>
       {loading ? (
@@ -34,7 +33,7 @@ const ItemDetailContainer = () => {
       ) : (
         <ItemDetail
           id={product.id}
-          name={product.name}
+          title={product.title}
           description={product.description}
           price={product.price}
           image={product.image}

@@ -5,7 +5,6 @@ export const CartContext = createContext({});
 const CartProvider = ({children}) => {
 
     const [products, setProducts] = useState([]);
-
     const getItem = (itemId) => {
         return products.find(obj => obj.id === itemId);
     }   

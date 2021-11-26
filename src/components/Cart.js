@@ -22,7 +22,7 @@ const Cart = (props) => {
             <p>Tu carrito tiene:</p>
             <div>
               <h2>Nombre:{product.item.id}</h2>
-              <h2>Nombre:{product.item.name}</h2>
+              <h2>Nombre:{product.item.title}</h2>
               <h2>Precio Unidad:{product.item.price}</h2>
               {product.quantity > 1 && (
                 <h2>
@@ -38,7 +38,6 @@ const Cart = (props) => {
                 borrar
               </button>
             </div>
-            <p>Precio total de compra: {totalPurchasePrice}</p>
           </div>
         ))
       ) : (
@@ -48,6 +47,9 @@ const Cart = (props) => {
             <button>Volver al inicio</button>
           </Link>
         </div>
+      )}
+      {products.length !== 0 && (
+        <p>Precio total de compra: {totalPurchasePrice}</p>
       )}
     </div>
   );

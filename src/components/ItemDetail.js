@@ -36,7 +36,7 @@ const imageStyles = css`
   margin-botom: 150px;
 `;
 
-const nameStyles = css`
+const titleStyles = css`
   font-size: 16px;
   font-weight: bold;
 `;
@@ -47,20 +47,18 @@ const priceStyles = css`
   font-weight: bold;
 `;
 
-const descriptionStyles = css``;
-
-const ItemDetail = ({ id, name, image, price, description, stock }) => {
+const ItemDetail = ({ id, title, image, price, description, stock }) => {
   const [buy, setBuy] = useState(false);
   const { addItem, products } = useContext(CartContext);
 
   const add = (props) => {
     const filteredProduct = products.filter(
-      (product) => product.name === name
+      (product) => product.name === title
     );
 
     if (props.units !== 0 && filteredProduct.length === 0) {
       setBuy(true);
-      addItem({ id, name, price }, props.units);
+      addItem({ id, title, price }, props.units);
       alert(`agregaste ${props.units} al carrito!`);
     } else if (props.units === 0) {
       alert(`primero selecciona la cantidad del producto!`);
@@ -73,10 +71,10 @@ const ItemDetail = ({ id, name, image, price, description, stock }) => {
     <div css={container}>
       <div css={itemContainer}>
         <div css={leftContainer}>
-          <img css={imageStyles} src={image} alt={name} />
+          <img css={imageStyles} src={image} alt={title} />
         </div>
         <div css={rightContainer}>
-          <h1 css={nameStyles}>{name}</h1>
+          <h1 css={titleStyles}>{title}</h1>
           <p css={priceStyles}>{price}</p>
           <p css={priceStyles}>{stock}</p>
           {!buy ? (
