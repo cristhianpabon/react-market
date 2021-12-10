@@ -10,7 +10,7 @@ const cartContainer = css`
   text-align: center;
 `;
 
-const submitButton = css`
+const backButton = css`
   background: #ee8263;
   color: #ffffff;
   border: none;
@@ -23,11 +23,27 @@ const submitButton = css`
   cursor: pointer;
 `;
 
+const submitButton = css`
+  background: #ee8263;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 0px;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 400px;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+`;
+
 const cartTableContainer = css`
   margin-top: 50px;
-  padding:30px;
+  padding: 30px;
   width: 100%;
-  border:1px solid #ee8263;
+  border: 1px solid #ee8263;
   border-radius: 10px;
 `;
 
@@ -39,7 +55,7 @@ const emptyCartStyle = css`
 const emptyCartMessageStyle = css`
   font-size: 26px;
   color: #f4a792;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 `;
 
 const totalPurchasePriceStyle = css`
@@ -56,10 +72,12 @@ const calculateTotalPurchasePrice = (products) => {
   }, 0);
 };
 
+
 const Cart = (props) => {
-  const { products, removeItem } = useContext(CartContext);
+  const { products, removeItem, clear } = useContext(CartContext);
   const totalPurchasePrice =
     products.length > 0 && calculateTotalPurchasePrice(products);
+
   return (
     <div css={cartContainer}>
       <p css={emptyCartMessageStyle}>Tu carrito tiene:</p>
@@ -84,7 +102,7 @@ const Cart = (props) => {
               </td>
               <td>
                 <button
-                  css={submitButton}
+                  css={backButton}
                   onClick={() => {
                     removeItem(product.item.id);
                   }}
@@ -103,14 +121,19 @@ const Cart = (props) => {
             No tienes productos agregados al carrito.
           </p>
           <Link to={"/"}>
-            <button css={submitButton}>Volver al inicio</button>
+            <button css={backButton}>Volver al inicio</button>
           </Link>
         </div>
       )}
       {products.length !== 0 && (
-        <p css={totalPurchasePriceStyle}>
-          Precio total de compra: {totalPurchasePrice}
-        </p>
+        <div>
+          <p css={totalPurchasePriceStyle}>
+            Precio total de compra: {totalPurchasePrice}
+          </p>
+          <button css={submitButton} onClick={()=>{ clear()}}>
+            Pagar
+          </button>
+        </div>
       )}
     </div>
   );

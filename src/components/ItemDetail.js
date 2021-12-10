@@ -43,7 +43,7 @@ const imageStyles = css`
 const titleStyles = css`
   font-size: 16px;
   font-weight: bold;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 `;
 
 const priceStyles = css`
@@ -65,11 +65,28 @@ const submitButton = css`
   text-align: center;
 `;
 
+const explorerButton = css`
+  background: #FFFFFF;
+  color: #ee8263;
+  border: 2px solid #ee8263;
+  border-radius: 5px;
+  padding: 10px 30px;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  margin-top: 30px;
+  text-align: center;
+`;
+
 const submitColor = css`
   color: #ffffff;
   text-decoration: none;
 `;
 
+const explorerColor = css`
+  color: #ee8263;
+  text-decoration: none;
+`;
 
 const ItemDetail = ({ id, title, image, price, description, stock }) => {
   const [buy, setBuy] = useState(false);
@@ -83,11 +100,9 @@ const ItemDetail = ({ id, title, image, price, description, stock }) => {
     if (props.units !== 0 && filteredProduct.length === 0) {
       setBuy(true);
       addItem({ id, title, price }, props.units);
-      alert(`agregaste ${props.units} al carrito!`);
     } else if (props.units === 0) {
       alert(`primero selecciona la cantidad del producto!`);
     } else if (filteredProduct.length > 1) {
-      alert(`El producto ya existe en el carrito!`);
     }
   };
 
@@ -105,10 +120,17 @@ const ItemDetail = ({ id, title, image, price, description, stock }) => {
           {!buy ? (
             <ItemCount stock={stock} onAdd={add} />
           ) : (
-            <div css={submitButton} >
-              <Link css={submitColor} to="/product/cart">
-                Terminar Compra
-              </Link>
+            <div>
+              <div css={submitButton}>
+                <Link css={submitColor} to="/product/cart">
+                  Terminar Compra
+                </Link>
+              </div>
+              <div css={explorerButton}>
+                <Link css={explorerColor} to="/">
+                  Explorar Pinturas
+                </Link>
+              </div>
             </div>
           )}
         </div>
