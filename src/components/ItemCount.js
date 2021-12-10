@@ -1,4 +1,38 @@
-import React, { useState } from "react";
+/** @jsxRuntime classic /
+/* @jsx jsx */
+import { jsx, css } from "@emotion/react";
+import { useState } from "react";
+
+const counterContainer = css`
+  display: flex;
+  justify-content: flex-start;
+  margin: 30px 0;
+`;
+
+const counterButton = css`
+  background: #EE8263;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  width: 50px;
+  font-weight: bold;
+  font-size: 20px;
+`;
+
+const counterNumber = css`
+  font-size: 26px;
+  margin: 0 10px;
+`;
+
+const submitButton = css`
+  background: #EE8263;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  font-weight: bold;
+  font-size: 20px;
+`;
 
 function ItemCount(props) {
   const [stock, setStock] = useState(props.stock);
@@ -25,17 +59,25 @@ function ItemCount(props) {
   return (
     <div>
       <div>
-        <p>Stock disponible: {stock}</p>
+        <h2>Stock disponible:</h2>
+        <p>Cantidad: {stock}</p>
       </div>
-      <div>
-        <button onClick={handleButton.restar} disabled={stock === 0}>
+      <div css={counterContainer}>
+        <button css={counterButton} onClick={handleButton.restar} disabled={stock === 0}>
           -
         </button>
-        <p>{units}</p>
-        <button onClick={handleButton.sumar}>+</button>
+        <p css={counterNumber}>{units}</p>
+        <button css={counterButton} onClick={handleButton.sumar}>+</button>
       </div>
       <div>
-        <button onClick={()=>{props.onAdd({units})}}>Agregar al carrito</button>
+        <button
+          css={submitButton}
+          onClick={() => {
+            props.onAdd({ units });
+          }}
+        >
+          Agregar al carrito
+        </button>
       </div>
     </div>
   );

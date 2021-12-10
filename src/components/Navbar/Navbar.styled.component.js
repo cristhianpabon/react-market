@@ -9,7 +9,7 @@ export const navbarStyles = css`
 `;
 
 export const navbarLogoStyles = css`
-  color: #000000;
+  color: #EE8263;
   text-decoration: none;
   font-family: "Bebas Neue", cursive;
   font-size: 64px;
@@ -27,7 +27,7 @@ export const navbarMenuButtonsStyles = css`
 
 export const navbarMenuStyles = css`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 20%;
   min-width: 320px;
   @media (max-width: 960px) {

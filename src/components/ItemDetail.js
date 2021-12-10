@@ -15,15 +15,19 @@ const itemContainer = css`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 50px;
+  border-bottom: 1px solid #ee8263;
 `;
 
 const leftContainer = css`
-  width: 100%;
+  width: 60%;
   text-align: center;
 `;
 
 const rightContainer = css`
-  width: 100%;
+  width: 40%;
+  padding: 50px 0px 50px 50px;
+  border-left: 1px solid #ee8263;
 `;
 
 const descriptionContainer = css`
@@ -39,6 +43,7 @@ const imageStyles = css`
 const titleStyles = css`
   font-size: 16px;
   font-weight: bold;
+  margin-bottom:10px;
 `;
 
 const priceStyles = css`
@@ -46,6 +51,25 @@ const priceStyles = css`
   margin-botom: 20px;
   font-weight: bold;
 `;
+
+const submitButton = css`
+  background: #ee8263;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  margin-top: 30px;
+  text-align: center;
+`;
+
+const submitColor = css`
+  color: #ffffff;
+  text-decoration: none;
+`;
+
 
 const ItemDetail = ({ id, title, image, price, description, stock }) => {
   const [buy, setBuy] = useState(false);
@@ -74,17 +98,23 @@ const ItemDetail = ({ id, title, image, price, description, stock }) => {
           <img css={imageStyles} src={image} alt={title} />
         </div>
         <div css={rightContainer}>
-          <h1 css={titleStyles}>{title}</h1>
-          <p css={priceStyles}>{price}</p>
-          <p css={priceStyles}>{stock}</p>
+          <div>
+            <h1 css={titleStyles}>{title}</h1>
+            <p css={priceStyles}>${price}</p>
+          </div>
           {!buy ? (
             <ItemCount stock={stock} onAdd={add} />
           ) : (
-            <Link to="/product/cart">Terminar Compra</Link>
+            <div css={submitButton} >
+              <Link css={submitColor} to="/product/cart">
+                Terminar Compra
+              </Link>
+            </div>
           )}
         </div>
       </div>
       <div css={descriptionContainer}>
+        <h2>Descripcion:</h2>
         <p>{description}</p>
       </div>
     </div>
